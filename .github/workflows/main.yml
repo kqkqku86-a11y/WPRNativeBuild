@@ -21,12 +21,23 @@ jobs:
         with:
           ndk-version: r21e
 
+      - name: Show NDK
+        shell: cmd
+        run: |
+          echo ANDROID_NDK_ROOT=%ANDROID_NDK_ROOT%
+          echo ANDROID_NDK_HOME=%ANDROID_NDK_HOME%
+
       - name: Install Ninja
         run: choco install ninja -y
 
       - name: Verify Ninja
         shell: cmd
         run: ninja --version
+
+      - name: Clean build directory
+        shell: cmd
+        run: |
+          if exist Source\Build rmdir /s /q Source\Build
 
       - name: Build libraries
         shell: cmd
