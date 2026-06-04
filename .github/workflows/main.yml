@@ -21,6 +21,11 @@ jobs:
         with:
           ndk-version: r21e
 
+      - name: Install NDK r21e
+        shell: cmd
+        run: |
+          sdkmanager "ndk;21.4.7075529"
+
       - name: Show NDK
         shell: cmd
         run: |
