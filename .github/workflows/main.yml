@@ -16,6 +16,14 @@ jobs:
       - name: Download submodules
         run: git submodule update --init --recursive
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Find sdkmanager
+        shell: cmd
+        run: |
+          dir C:\Android /s /b | findstr sdkmanager.bat
+
       - name: Setup Android NDK
         uses: nttld/setup-ndk@v1
         with:
