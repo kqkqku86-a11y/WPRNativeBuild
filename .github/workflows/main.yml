@@ -27,6 +27,11 @@ jobs:
           echo ANDROID_NDK_ROOT=%ANDROID_NDK_ROOT%
           echo ANDROID_NDK_HOME=%ANDROID_NDK_HOME%
 
+      - name: List NDKs
+        shell: cmd
+        run: |
+          dir C:\Android\android-sdk\ndk
+
       - name: Install Ninja
         run: choco install ninja -y
 
