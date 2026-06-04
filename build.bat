@@ -3,7 +3,7 @@
 cd Source
 
 set TARGETS=armeabi-v7a x86_64 arm64-v8a
-set ANDROID_TOOLCHAIN="D:\Tools\AndroidSDK\ndk\21.3.6528147\build\cmake\android.toolchain.cmake"
+set ANDROID_TOOLCHAIN=%ANDROID_NDK_ROOT%\build\cmake\android.toolchain.cmake
 
 mkdir Build && cd Build
 	
