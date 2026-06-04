@@ -61,9 +61,14 @@ jobs:
         shell: cmd
         run: |
           .\build.bat
+
+      - name: Show libraries
+        shell: cmd
+        run: |
+          dir Source\lib /s
           
-      - name: Upload .so
+      - name: Upload armeabi-v7a
         uses: actions/upload-artifact@v4
         with:
-          name: android-so
-          path: Source/Build/**/*.so
+          name: armeabi-v7a-libs
+          path: Source/lib/armeabi-v7a/*.so
