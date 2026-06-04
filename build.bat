@@ -11,7 +11,7 @@ FOR %%i IN (%TARGETS%) DO (
     mkdir %%i
 	cd %%i
 
-    cmake -G "MinGW Makefiles" -DCMAKE_TOOLCHAIN_FILE=%ANDROID_TOOLCHAIN% -DANDROID_PLATFORM=21 -DCMAKE_BUILD_TYPE=Release -DANDROID_ABI=%%i ../..
+    cmake -G Ninja -DCMAKE_TOOLCHAIN_FILE=%ANDROID_TOOLCHAIN% -DANDROID_PLATFORM=21 -DCMAKE_BUILD_TYPE=Release -DANDROID_ABI=%%i ../..
 	cmake --build . -j4
     echo Current dir:
     cd
