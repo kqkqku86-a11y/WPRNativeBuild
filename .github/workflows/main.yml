@@ -1,0 +1,52 @@
+name: Build WPR Android
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Download submodules
+        run: git submodule update --init --recursive
+
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r21e
+
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          install: mingw-w64-x86_64-gcc make
+
+      - name: Check tools
+        shell: cmd
+        run: |
+          gcc --version
+          mingw32-make --version
+          cmake --version
+
+      - name: Set
+        run: set ANDROID_TOOLCHAIN="D:\Tools\AndroidSDK\ndk\21.3.6528147\build\cmake\android.toolchain.cmake"
+        shell: cmd
+
+      - name: Set2
+        run: set ANDROID_TOOLCHAIN=%ANDROID_NDK_HOME%\build\cmake\android.toolchain.cmake
+        shell: cmd
+        
+      - name: Build libraries
+        run: .\build.bat
+        shell: cmd
+
+      - name: Upload .so
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-so
+          path: Source/Build/**/*.so
